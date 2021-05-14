@@ -2,7 +2,7 @@
 
 A plugin to purge your unused assets, disabled products, and more. 
 
-![Screenshot](resources/img/plugin-logo.png)
+![Logo](resources/img/plugin-logo.png)
 
 ## Requirements
 
@@ -31,6 +31,10 @@ Instead of manually delete your unused assets and disabled product, purge them w
 Purge Assets doesn't require some configuring, it works right away.
 
 ## Using Purge Assets
+
+Using Purge Assets, is very simple just click the action button's in the Control Panel and lets the magic happen
+
+![Screenshot](resources/img/screenshot.png)
 
 You can also use console commands to purge your assets and products, just run the following command:
 
