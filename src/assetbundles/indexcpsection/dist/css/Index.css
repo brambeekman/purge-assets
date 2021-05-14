@@ -1,0 +1,21 @@
+/**
+ * Purge Assets plugin for Craft CMS
+ *
+ * Index Field CSS
+ *
+ * @author    Bram Beekman
+ * @copyright Copyright (c) 2021 Bram Beekman
+ * @link      https://brambeekman.com
+ * @package   PurgeAssets
+ * @since     1.0.0
+ */
+
+
+.field form {
+    margin-top: 20px;
+}
+
+button[disabled][type=submit] {
+    opacity: 0.6;
+    cursor: default;
+}

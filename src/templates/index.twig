@@ -1,0 +1,85 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Purge Assets plugin for Craft CMS 3.x
+ *
+ * Purge Assets index.twig
+ *
+ * @author    Bram Beekman
+ * @copyright Copyright (c) 2021 Bram Beekman
+ * @link      https://brambeekman.com
+ * @package   PurgeAssets
+ * @since     1.0.0
+ */
+#}
+
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+
+{#{% do view.registerAssetBundle("brambeekman\\purgeassets\\assetbundles\\purgeassets\\PurgeAssetsAsset") %}#}
+{% do view.registerAssetBundle("brambeekman\\purgeassets\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
+
+{% set docsUrl = "https://github.com/BramBeekman/purge-assets/blob/master/README.md" %}
+
+{% set title = "Purge Assets" %}
+
+{% set pluginCpUrl = url('purge-assets') %}
+
+{% set iconUrl = view.getAssetManager().getPublishedUrl('@brambeekman/purgeassets/assetbundles/indexcpsection/dist', true) ~ '/img/Index-icon.svg' %}
+
+{% set extraPageHeaderHtml %}
+    <div class="buttons">
+        <a href="{{ pluginCpUrl }}" class="btn submit add icon">{{ "Click Me!"|t('purge-assets') }}</a>
+    </div>
+{% endset %}
+
+
+{% set content %}
+
+    <div class="field">
+        <div class="heading">
+            <label>{{ 'Purge Unused Assets' }}</label>
+        </div>
+        <div class="instructions">
+            <p>Please take note that all assets will be hard deleted!</p>
+        </div>
+        <form id="form" action="" method="post">
+            {{ csrfInput() }}
+            <input type="hidden" name="action" value="purge-assets/purge/purge-unused-assets">
+            <button class="btn submit" type="submit">{{ 'Purge Unused Assets'|t }}</button>
+        </form>
+    </div>
+    <hr>
+
+    {% set plugin = craft.app.plugins.isPluginInstalled('commerce') %}
+    {% if plugin %}
+        <div class="field">
+            <div class="heading">
+                <label>{{ 'Purge Disabled Products' }}</label>
+            </div>
+            <div class="instructions">
+                <p>Please take note that all products will be hard deleted!</p>
+            </div>
+            <form id="form" action="" method="post">
+                {{ csrfInput() }}
+                <input type="hidden" name="action" value="purge-assets/purge/purge-disabled-products">
+                <button class="btn submit" type="submit">{{ 'Purge Disabled Products'|t }}</button>
+            </form>
+        </div>
+    {% else %}
+        <div class="field">
+            <div class="heading">
+                <label>{{ 'Purge Disabled Products' }}</label>
+            </div>
+            <div class="instructions">
+                <p>Please take note that all products will be hard deleted!</p>
+            </div>
+            <form id="form" action="" method="post">
+                {{ csrfInput() }}
+                <input type="hidden" name="action" value="purge-assets/purge/purge-disabled-products">
+                <button disabled class="btn submit" type="submit">{{ 'Commerce is not installed'|t }}</button>
+            </form>
+        </div>
+    {% endif %}
+
+{% endset %}

@@ -1,0 +1,41 @@
+{
+    "name": "brambeekman/purge-assets",
+    "description": "A plugin to purge your unused assets, disabled products, and more. ",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "purge assets"
+    ],
+    "support": {
+        "docs": "https://github.com/BramBeekman/purge-assets/blob/master/README.md",
+        "issues": "https://github.com/BramBeekman/purge-assets/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bram Beekman",
+            "homepage": "https://brambeekman.com"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "brambeekman\\purgeassets\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Purge Assets",
+        "handle": "purge-assets",
+        "developer": "Bram Beekman",
+        "developerUrl": "https://brambeekman.com",
+        "documentationUrl": "https://github.com/BramBeekman/purge-assets/blob/master/README.md",
+        "changelogUrl": "https://raw.githubusercontent.com/BramBeekman/purge-assets/master/CHANGELOG.md",
+        "class": "brambeekman\\purgeassets\\PurgeAssets"
+    }
+}
