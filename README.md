@@ -24,20 +24,24 @@ To install the plugin, follow these instructions.
 
 ## Purge Assets Overview
 
--Insert text here-
+Instead of manually delete your unused assets and disabled product, purge them with one click!
 
 ## Configuring Purge Assets
 
--Insert text here-
+Purge Assets doesn't require some configuring, it works right away.
 
 ## Using Purge Assets
 
--Insert text here-
+You can also use console commands to purge your assets and products, just run the following command:
 
-## Purge Assets Roadmap
+Purge all unused assets
+`./craft purge-assets/purge/purge-unused-assets`
 
-Some things to do, and ideas for potential features:
+Purge all disabled products
+`./craft purge-assets/purge/purge-disabled-products`
 
-* Release it
+Take note that the assets will be soft deleted, to hard delete the assets run:
+
+`./craft gc --delete-all-trashed`
 
 Brought to you by [Bram Beekman](https://brambeekman.com)
