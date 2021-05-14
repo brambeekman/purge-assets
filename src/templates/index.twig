@@ -36,50 +36,119 @@
 
 {% set content %}
 
-    <div class="field">
-        <div class="heading">
-            <label>{{ 'Purge Unused Assets' }}</label>
-        </div>
-        <div class="instructions">
-            <p>Please take note that all assets will be hard deleted!</p>
-        </div>
-        <form id="form" action="" method="post">
-            {{ csrfInput() }}
-            <input type="hidden" name="action" value="purge-assets/purge/purge-unused-assets">
-            <button class="btn submit" type="submit">{{ 'Purge Unused Assets'|t }}</button>
-        </form>
-    </div>
+    <table class="fullwidth">
+        <tbody>
+        <tr>
+            <th>
+                <div class="field">
+                    <div class="heading">
+                        <label>{{ 'Purge Unused Assets' }}</label>
+                    </div>
+                    <div class="instructions">
+                        <p>{{ 'Please take note that all assets will be hard deleted!'|t }}</p>
+                    </div>
+                </div>
+            </th>
+            <form id="form" action="" method="post">
+                {{ csrfInput() }}
+                <td>
+                    <div class="field">
+                        <div class="heading">
+                            <label>Hard Delete Assets</label>
+                        </div>
+                        <button type="button" class="lightswitch on" role="checkbox" aria-checked="true">
+                            <div class="lightswitch-container">
+                                <div class="handle"></div>
+                            </div>
+                            <input type="hidden" name="hardDelete" value="1">
+                        </button>
+                    </div>
+                </td>
+                <td class="thin">
+                    <input type="hidden" name="action" value="purge-assets/purge/purge-unused-assets">
+                    <button class="btn submit" type="submit">{{ 'Purge Unused Assets'|t }}</button>
+                </td>
+            </form>
+        </tr>
+        </tbody>
+    </table>
     <hr>
 
     {% set plugin = craft.app.plugins.isPluginInstalled('commerce') %}
     {% if plugin %}
-        <div class="field">
-            <div class="heading">
-                <label>{{ 'Purge Disabled Products' }}</label>
-            </div>
-            <div class="instructions">
-                <p>Please take note that all products will be hard deleted!</p>
-            </div>
-            <form id="form" action="" method="post">
-                {{ csrfInput() }}
-                <input type="hidden" name="action" value="purge-assets/purge/purge-disabled-products">
-                <button class="btn submit" type="submit">{{ 'Purge Disabled Products'|t }}</button>
-            </form>
-        </div>
+        <table class="fullwidth">
+            <tbody>
+            <tr>
+                <th>
+                    <div class="field">
+                        <div class="heading">
+                            <label>{{ 'Purge Disabled Products' }}</label>
+                        </div>
+                        <div class="instructions">
+                            <p>{{ 'Please take note that all products will be hard deleted!'|t }}</p>
+                        </div>
+                    </div>
+                </th>
+                <form id="form" action="" method="post">
+                    {{ csrfInput() }}
+                    <td>
+                        <div class="field">
+                            <div class="heading">
+                                <label>{{ 'Hard Delete Assets'|t }}</label>
+                            </div>
+                            <button type="button" class="lightswitch on" role="checkbox" aria-checked="true">
+                                <div class="lightswitch-container">
+                                    <div class="handle"></div>
+                                </div>
+                                <input type="hidden" name="hardDelete" value="1">
+                            </button>
+                        </div>
+                    </td>
+                    <td class="thin">
+                        <input type="hidden" name="action" value="purge-assets/purge/purge-disabled-products">
+                        <button class="btn submit" type="submit">{{ 'Purge Disabled Products'|t }}</button>
+                    </td>
+                </form>
+            </tr>
+            </tbody>
+        </table>
     {% else %}
-        <div class="field">
-            <div class="heading">
-                <label>{{ 'Purge Disabled Products' }}</label>
-            </div>
-            <div class="instructions">
-                <p>Please take note that all products will be hard deleted!</p>
-            </div>
-            <form id="form" action="" method="post">
-                {{ csrfInput() }}
-                <input type="hidden" name="action" value="purge-assets/purge/purge-disabled-products">
-                <button disabled class="btn submit" type="submit">{{ 'Commerce is not installed'|t }}</button>
-            </form>
-        </div>
+        <table class="fullwidth">
+            <tbody>
+            <tr>
+                <th>
+                    <div class="field">
+                        <div class="heading">
+                            <label>{{ 'Purge Disabled Products' }}</label>
+                        </div>
+                        <div class="instructions">
+                            <p>{{ 'Please take note that all products will be hard deleted!'|t }}</p>
+                        </div>
+                    </div>
+                </th>
+                <form id="form" action="" method="post">
+                    {{ csrfInput() }}
+                    <td>
+                        <div class="field">
+                            <div class="heading">
+                                <label>{{ 'Hard Delete Assets'|t }}</label>
+                            </div>
+                            <button type="button" class="lightswitch on" role="checkbox" aria-checked="true">
+                                <div class="lightswitch-container">
+                                    <div class="handle"></div>
+                                </div>
+                                <input type="hidden" name="hardDelete" value="1">
+                            </button>
+                        </div>
+                    </td>
+                    <td class="thin">
+                        <input type="hidden" name="action" value="purge-assets/purge/purge-disabled-products">
+                        <button disabled class="btn submit" type="submit">{{ 'Purge Disabled Products'|t }}</button>
+                    </td>
+                </form>
+            </tr>
+            </tbody>
+        </table>
     {% endif %}
 
 {% endset %}
