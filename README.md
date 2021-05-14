@@ -1,8 +1,8 @@
+![Icon](resources/img/plugin-logo.svg)
+
 # Purge Assets plugin for Craft CMS 3.x
 
-A plugin to purge your unused assets, disabled products, and more. 
-
-![Logo](resources/img/plugin-logo.png)
+A plugin to purge your unused assets, disabled products, and more.
 
 ## Requirements
 
@@ -24,7 +24,7 @@ To install the plugin, follow these instructions.
 
 ## Purge Assets Overview
 
-Instead of manually delete your unused assets and disabled product, purge them with one click!
+Instead of manually deleting your unused assets and disabled products, purge them with one click!
 
 ## Configuring Purge Assets
 
