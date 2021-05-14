@@ -1,4 +1,6 @@
-![Icon](resources/img/plugin-logo.svg)
+<a href="https://brambeekman.com" target="_blank"><img width="94" src="https://github.com/brambeekman/purge-assets/blob/master/resources/img/plugin-logo.svg" alt="Purge Assets"></a>
+
+<br>
 
 # Purge Assets plugin for Craft CMS 3.x
 
