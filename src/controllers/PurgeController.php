@@ -29,44 +29,14 @@ use yii\helpers\Console;
  */
 class PurgeController extends Controller
 {
-
+    
     public $deleteAllTrashed = true;
-
-    public function actionPurgeDisabledProducts()
-    {
-        // Fetch disabled products
-        $products = Product::find()
-            ->status('disabled')
-            ->all();
-
-        // if empty return with a message
-        if (empty($products)) {
-            $results = 'No disabled products to delete.';
-            Craft::$app->getSession()->setNotice(Craft::t('purge-assets', $results));
-            return $this->redirect('purge-assets');
-        }
-
-        // loop over the disabled products and delete them
-        foreach ($products as $product) {
-            Craft::$app->elements->deleteElement($product);
-        }
-
-        // After deleting the product, hard delete them to
-        $gc = Craft::$app->getGc();
-        $deleteAllTrashed = $gc->deleteAllTrashed;
-        $gc->deleteAllTrashed = $this->deleteAllTrashed;
-        $gc->run(true);
-        $gc->deleteAllTrashed = $deleteAllTrashed;
-
-        // Finish with a message
-        $results = 'Finished deleting ' . count($products) . ' disabled products.';
-        Craft::$app->getSession()->setNotice(Craft::t('purge-assets', $results));
-        return $this->redirect('purge-assets');
-
-    }
 
     public function actionPurgeUnusedAssets()
     {
+
+        $hardDelete = Craft::$app->getRequest()->getParam('hardDelete');
+
         // Find any asset IDs that aren't related to anything
         $assetIds = (new Query())
             ->select(['a.id'])
@@ -90,15 +60,55 @@ class PurgeController extends Controller
             Craft::$app->elements->deleteElement($asset);
         }
 
-        // After deleting the assets, hard delete them to
-        $gc = Craft::$app->getGc();
-        $deleteAllTrashed = $gc->deleteAllTrashed;
-        $gc->deleteAllTrashed = $this->deleteAllTrashed;
-        $gc->run(true);
-        $gc->deleteAllTrashed = $deleteAllTrashed;
+        if ($hardDelete == 1) {
+            // After deleting the assets, hard delete them to
+            $gc = Craft::$app->getGc();
+            $deleteAllTrashed = $gc->deleteAllTrashed;
+            $gc->deleteAllTrashed = $this->deleteAllTrashed;
+            $gc->run(true);
+            $gc->deleteAllTrashed = $deleteAllTrashed;
+        }
 
         $results = 'Finished deleting ' . count($assets) . ' unrelated assets.';
         Craft::$app->getSession()->setNotice(Craft::t('purge-assets', $results));
         return $this->redirect('purge-assets');
+    }
+
+    public function actionPurgeDisabledProducts()
+    {
+
+        $hardDelete = Craft::$app->getRequest()->getParam('hardDelete');
+
+        // Fetch disabled products
+        $products = Product::find()
+            ->status('disabled')
+            ->all();
+
+        // if empty return with a message
+        if (empty($products)) {
+            $results = 'No disabled products to delete.';
+            Craft::$app->getSession()->setNotice(Craft::t('purge-assets', $results));
+            return $this->redirect('purge-assets');
+        }
+
+        // loop over the disabled products and delete them
+        foreach ($products as $product) {
+            Craft::$app->elements->deleteElement($product);
+        }
+
+        if ($hardDelete == 1) {
+            // After deleting the product, hard delete them to
+            $gc = Craft::$app->getGc();
+            $deleteAllTrashed = $gc->deleteAllTrashed;
+            $gc->deleteAllTrashed = $this->deleteAllTrashed;
+            $gc->run(true);
+            $gc->deleteAllTrashed = $deleteAllTrashed;
+        }
+
+        // Finish with a message
+        $results = 'Finished deleting ' . count($products) . ' disabled products.';
+        Craft::$app->getSession()->setNotice(Craft::t('purge-assets', $results));
+        return $this->redirect('purge-assets');
+
     }
 }
