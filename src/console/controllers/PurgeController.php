@@ -56,6 +56,29 @@ class PurgeController extends Controller
 
     }
 
+    public function actionPurgeAllProducts() : int
+    {
+        // Fetch all products
+        $products = Product::find()->all();
+
+        if (empty($products)) {
+            $this->stdout('No products to delete.' . PHP_EOL);
+            return ExitCode::OK;
+        } else {
+            $this->stdout('Found ' . count($products) . ' products.' . PHP_EOL);
+        }
+
+        foreach ($products as $product) {
+            $this->stdout(" - Deleting asset {$product} ... ");
+            Craft::$app->elements->deleteElement($product);
+            $this->stdout('done' . PHP_EOL, Console::FG_GREEN);
+        }
+
+        $this->stdout('Finished deleting all products.' . PHP_EOL);
+        return ExitCode::OK;
+
+    }
+
     public function actionPurgeUnusedAssets(): int
     {
         // Find any asset IDs that aren't related to anything
