@@ -1,53 +1,37 @@
-<a href="https://brambeekman.com" target="_blank"><img width="94" src="https://github.com/brambeekman/purge-assets/blob/master/resources/img/plugin-logo.svg" alt="Purge Assets"></a>
+<p align="center"><img src="./resources/plugin-logo.svg" width="100" height="100" alt="Purge Assets icon"></p>
 
-<br>
+<h1 align="center">Purge Assets for Craft CMS</h1>
 
-# Purge Assets plugin for Craft CMS 3.x
-
-A plugin to purge your unused assets, disabled products, and more.
+Purge Assets is a Craft plugin for super-simple purge of assets and products, either via the control panel or with console commands. With support for soft or hard delete.
 
 ## Requirements
 
-This plugin requires Craft CMS 3.0.0-beta.23 or later.
+This plugin requires Craft CMS 3.5.0 or later.
 
 ## Installation
 
-To install the plugin, follow these instructions.
+You can install this plugin from the Plugin Store or with Composer.
 
-1. Open your terminal and go to your Craft project:
+#### From the Plugin Store
 
-        cd /path/to/project
+Go to the Plugin Store in your project’s Control Panel and search for “Purge Assets”. Then click on the “Install” button in its modal window.
 
-2. Then tell Composer to load the plugin:
+#### With Composer
 
-        composer require BramBeekman/purge-assets
+Open your terminal and run the following commands:
 
-3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Purge Assets.
+```bash
+# go to the project directory
+cd /path/to/my-project.test
 
-## Purge Assets Overview
+# tell Composer to load the plugin
+composer require brambeekman/purge-assets
 
-Instead of manually deleting your unused assets and disabled products, purge them with one click!
+# tell Craft to install the plugin
+./craft install/plugin purge-assets
+```
 
-## Configuring Purge Assets
+## Resources
 
-Purge Assets doesn't require some configuring, it works right away.
-
-## Using Purge Assets
-
-Using Purge Assets, is very simple just click the action button's in the Control Panel and lets the magic happen
-
-![Screenshot](resources/img/screenshot.png)
-
-You can also use console commands to purge your assets and products, just run the following command:
-
-Purge all unused assets
-`./craft purge-assets/purge/purge-unused-assets`
-
-Purge all disabled products
-`./craft purge-assets/purge/purge-disabled-products`
-
-Take note that the assets will be soft deleted, to hard delete the assets run:
-
-`./craft gc --delete-all-trashed`
-
-Brought to you by [Bram Beekman](https://brambeekman.com)
+- **[Purge Assets Plugin Page](https://plugins.craftcms.com/purge-assets)** – The official plugin page for Purge Assets
+- **[Purge Assets Documentation](https://brambeekman.com/docs/#/purge-assets/)** – The official documentation
