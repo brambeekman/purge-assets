@@ -31,6 +31,38 @@ use yii\console\ExitCode;
 class PurgeController extends Controller
 {
 
+    public function actionPurgeUnusedAssets(): int
+    {
+        // Find any asset IDs that aren't related to anything
+        $assetIds = (new Query())
+            ->select(['a.id'])
+            ->from(['a' => Table::ASSETS])
+            ->leftJoin(Table::RELATIONS . ' r', '[[r.targetId]] = [[a.id]]')
+            ->where(['r.id' => null])
+            ->column();
+
+        if (empty($assetIds)) {
+            $this->stdout('No unrelated assets to delete.' . PHP_EOL);
+            return ExitCode::OK;
+        }
+
+        // Now fetch and delete them
+        $assets = Asset::find()
+            ->id($assetIds)
+            ->all();
+
+        $this->stdout('Found ' . count($assets) . ' unrelated assets.' . PHP_EOL);
+
+        foreach ($assets as $asset) {
+            $this->stdout(" - Deleting asset {$asset->filename} ... ");
+            Craft::$app->elements->deleteElement($asset);
+            $this->stdout('done' . PHP_EOL, Console::FG_GREEN);
+        }
+
+        $this->stdout('Finished deleting unrelated assets.' . PHP_EOL);
+        return ExitCode::OK;
+    }
+
     public function actionPurgeDisabledProducts() : int
     {
         // Fetch disabled products
@@ -77,37 +109,5 @@ class PurgeController extends Controller
         $this->stdout('Finished deleting all products.' . PHP_EOL);
         return ExitCode::OK;
 
-    }
-
-    public function actionPurgeUnusedAssets(): int
-    {
-        // Find any asset IDs that aren't related to anything
-        $assetIds = (new Query())
-            ->select(['a.id'])
-            ->from(['a' => Table::ASSETS])
-            ->leftJoin(Table::RELATIONS . ' r', '[[r.targetId]] = [[a.id]]')
-            ->where(['r.id' => null])
-            ->column();
-
-        if (empty($assetIds)) {
-            $this->stdout('No unrelated assets to delete.' . PHP_EOL);
-            return ExitCode::OK;
-        }
-
-        // Now fetch and delete them
-        $assets = Asset::find()
-            ->id($assetIds)
-            ->all();
-
-        $this->stdout('Found ' . count($assets) . ' unrelated assets.' . PHP_EOL);
-
-        foreach ($assets as $asset) {
-            $this->stdout(" - Deleting asset {$asset->filename} ... ");
-            Craft::$app->elements->deleteElement($asset);
-            $this->stdout('done' . PHP_EOL, Console::FG_GREEN);
-        }
-
-        $this->stdout('Finished deleting unrelated assets.' . PHP_EOL);
-        return ExitCode::OK;
     }
 }
