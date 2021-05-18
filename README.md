@@ -1,4 +1,4 @@
-<p align="center"><img src="./resources/plugin-logo.svg" width="100" height="100" alt="Purge Assets icon"></p>
+<p align="center"><img src="/resources/plugin-logo.svg" width="100" height="100" alt="Purge Assets icon"></p>
 
 <h1 align="center">Purge Assets for Craft CMS</h1>
 
