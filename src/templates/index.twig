@@ -54,7 +54,7 @@
                 <td>
                     <div class="field">
                         <div class="heading">
-                            <label>Hard Delete Assets</label>
+                            <label>{{ 'Hard Delete Assets?'|t }}</label>
                         </div>
                         <button type="button" class="lightswitch on" role="checkbox" aria-checked="true">
                             <div class="lightswitch-container">
@@ -66,7 +66,7 @@
                 </td>
                 <td class="thin">
                     <input type="hidden" name="action" value="purge-assets/purge/purge-unused-assets">
-                    <button class="btn submit" type="submit">{{ 'Purge Unused Assets'|t }}</button>
+                    <button class="btn submit" type="submit">{{ 'Run Purge'|t }}</button>
                 </td>
             </form>
         </tr>
@@ -82,7 +82,7 @@
                 <th>
                     <div class="field">
                         <div class="heading">
-                            <label>{{ 'Purge Disabled Products' }}</label>
+                            <label>{{ 'Purge Disabled Products'|t }}</label>
                         </div>
                         <div class="instructions">
                             <p>{{ 'Please take note that all products will be hard deleted!'|t }}</p>
@@ -94,7 +94,7 @@
                     <td>
                         <div class="field">
                             <div class="heading">
-                                <label>{{ 'Hard Delete Assets'|t }}</label>
+                                <label>{{ 'Hard Delete Disabled Products?'|t }}</label>
                             </div>
                             <button type="button" class="lightswitch on" role="checkbox" aria-checked="true">
                                 <div class="lightswitch-container">
@@ -106,7 +106,7 @@
                     </td>
                     <td class="thin">
                         <input type="hidden" name="action" value="purge-assets/purge/purge-disabled-products">
-                        <button class="btn submit" type="submit">{{ 'Purge Disabled Products'|t }}</button>
+                        <button class="btn submit" type="submit">{{ 'Run Purge'|t }}</button>
                     </td>
                 </form>
             </tr>
@@ -131,7 +131,7 @@
                     <td>
                         <div class="field">
                             <div class="heading">
-                                <label>{{ 'Hard Delete Assets'|t }}</label>
+                                <label>{{ 'Hard Delete Disabled Products?'|t }}</label>
                             </div>
                             <button type="button" class="lightswitch on" role="checkbox" aria-checked="true">
                                 <div class="lightswitch-container">
@@ -143,7 +143,7 @@
                     </td>
                     <td class="thin">
                         <input type="hidden" name="action" value="purge-assets/purge/purge-disabled-products">
-                        <button disabled class="btn submit" type="submit">{{ 'Purge Disabled Products'|t }}</button>
+                        <button disabled class="btn submit" type="submit">{{ 'Run Purge'|t }}</button>
                     </td>
                 </form>
             </tr>

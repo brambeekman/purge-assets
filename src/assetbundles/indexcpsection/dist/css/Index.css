@@ -19,3 +19,7 @@ button[disabled][type=submit] {
     opacity: 0.6;
     cursor: default;
 }
+
+table.fullwidth th {
+    width: 50%;
+}
