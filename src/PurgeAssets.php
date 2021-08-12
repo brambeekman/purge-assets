@@ -26,7 +26,7 @@ use yii\base\Event;
  *
  * @author    Bram Beekman
  * @package   PurgeAssets
- * @since     1.0.0
+ * @since     1.3.0
  *
  */
 class PurgeAssets extends Plugin
@@ -45,7 +45,7 @@ class PurgeAssets extends Plugin
     /**
      * @var string
      */
-    public $schemaVersion = '1.0.0';
+    public $schemaVersion = '1.3.0';
 
     /**
      * @var bool
