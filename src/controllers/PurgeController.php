@@ -13,6 +13,7 @@ namespace brambeekman\purgeassets\controllers;
 use brambeekman\purgeassets\PurgeAssets;
 
 use craft\commerce\elements\Product;
+use craft\elements\Entry;
 use Craft;
 use craft\web\Controller;
 use craft\db\Query;
@@ -72,6 +73,44 @@ class PurgeController extends Controller
         $results = 'Finished deleting ' . count($assets) . ' unrelated assets.';
         Craft::$app->getSession()->setNotice(Craft::t('purge-assets', $results));
         return $this->redirect('purge-assets');
+    }
+
+    public function actionPurgeDisabledEntries()
+    {
+
+        $hardDelete = Craft::$app->getRequest()->getParam('hardDelete');
+
+        // Fetch disabled products
+        $entries = Entry::find()
+            ->status('disabled')
+            ->all();
+
+        // if empty return with a message
+        if (empty($entries)) {
+            $results = 'No disabled entries to delete.';
+            Craft::$app->getSession()->setNotice(Craft::t('purge-assets', $results));
+            return $this->redirect('purge-assets');
+        }
+
+        // loop over the disabled products and delete them
+        foreach ($entries as $entry) {
+            Craft::$app->elements->deleteElement($entry);
+        }
+
+        if ($hardDelete == 1) {
+            // After deleting the product, hard delete them to
+            $gc = Craft::$app->getGc();
+            $deleteAllTrashed = $gc->deleteAllTrashed;
+            $gc->deleteAllTrashed = $this->deleteAllTrashed;
+            $gc->run(true);
+            $gc->deleteAllTrashed = $deleteAllTrashed;
+        }
+
+        // Finish with a message
+        $results = 'Finished deleting ' . count($entries) . ' disabled entries.';
+        Craft::$app->getSession()->setNotice(Craft::t('purge-assets', $results));
+        return $this->redirect('purge-assets');
+
     }
 
     public function actionPurgeDisabledProducts()
